@@ -1,5 +1,5 @@
 
-let movies = [
+let data = [
     {
         "Title": "X-Men: Days of Future Past",
         "Year": "2014",
@@ -253,6 +253,19 @@ let movies = [
         "Poster": "https://m.media-amazon.com/images/M/MV5BOTdkYjA4YzAtMjNiZS00OTgyLTg5Y2ItNGIwZGQyMTUzNzFiXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
     }
 ]
+
+// verwijder dubbele titels (Avengers: Endgame). functie gevonden op:
+// https://reactgo.com/removeduplicateobjects/
+const getUnique = function (array, compare) {
+    const unique = array.map(e => e[compare])
+        // store the keys of the unique objects
+        .map((e, i, final) => final.indexOf(e) === i && i)
+        // eliminate the dead keys & store unique objects
+        .filter(e => array[e]).map(e => array[e]);
+    return unique;
+}
+// Aanroepen getUniue() met de array 'data', compare het 'Title' property in de objecten
+let movies = getUnique(data, 'Title');
 
 const filterMovies = function (radioButtonId) {
     switch (radioButtonId) {
