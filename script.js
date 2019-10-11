@@ -254,14 +254,22 @@ let movies = [
     }
 ]
 
-document.querySelectorAll('input').forEach( (item) => {
+const filterMovies = function (radioButtonId) {
+    switch (radioButtonId) {
+        case 'Nieuwste': displayMovies(movies.filter(e => e.Year >= 2014));
+            break
+        default: displayMovies(movies.filter(e => e.Title.includes(radioButtonId)));
+    }
+}
+
+document.querySelectorAll('input').forEach((item) => {
     item.addEventListener('click', (event) => {
-        console.log(event.target.id);      
+        filterMovies(event.target.id);
     });
 });
 
 const displayMovies = function (movieArray) {
-    document.querySelector('#posters').innerHTML = movieArray.reduce( (acc, item) => {
+    document.querySelector('#posters').innerHTML = movieArray.reduce((acc, item) => {
         return acc + `<a href="https://www.imdb.com/title/${item.imdbID}/" target="_blank"><img src="${item.Poster}" alt="film poster ${item.Title}"></a>`
     }, "");
 }
