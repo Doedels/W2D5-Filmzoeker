@@ -1,0 +1,23 @@
+{
+  "name": "w2d5-filmzoeker",
+  "version": "1.0.0",
+  "description": "Winc opdracht W2D5-Filmzoeker",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Doedels/W2D5-Filmzoeker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Doedels/W2D5-Filmzoeker/issues"
+  },
+  "homepage": "https://github.com/Doedels/W2D5-Filmzoeker#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
