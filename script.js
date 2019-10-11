@@ -43,3 +43,9 @@ const displayMovies = function (movieArray) {
 document.addEventListener('DOMContentLoaded', function (event) {
     displayMovies(movies);
 })
+
+module.exports = {
+    displayMovies: displayMovies,
+    filterMovies: filterMovies,
+    getUnique: getUnique
+}
