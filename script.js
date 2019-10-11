@@ -253,3 +253,11 @@ let movies = [
         "Poster": "https://m.media-amazon.com/images/M/MV5BOTdkYjA4YzAtMjNiZS00OTgyLTg5Y2ItNGIwZGQyMTUzNzFiXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
     }
 ]
+
+const displayMovies = function (movieArray) {
+    document.querySelector('#posters').innerHTML = movieArray.reduce( (acc, item) => {
+        return acc + `<a href="https://www.imdb.com/title/${item.imdbID}/" target="_blank"><img src="${item.Poster}" alt="film poster ${item.Title}"></a>`
+    }, "");
+}
+
+displayMovies(movies);
