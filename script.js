@@ -260,4 +260,6 @@ const displayMovies = function (movieArray) {
     }, "");
 }
 
-displayMovies(movies);
+document.addEventListener('DOMContentLoaded', function (event) {
+    displayMovies(movies);
+})
