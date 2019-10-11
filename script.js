@@ -274,12 +274,20 @@ const filterMovies = function (radioButtonId) {
         default: displayMovies(movies.filter(e => e.Title.includes(radioButtonId)));
     }
 }
+let radioButtons = document.querySelectorAll('input')
 
-document.querySelectorAll('input').forEach((item) => {
+radioButtons.forEach((item) => {
     item.addEventListener('click', (event) => {
         filterMovies(event.target.id);
     });
 });
+
+document.querySelector('button').onclick = (event) => {
+    displayMovies(movies);
+    radioButtons.forEach( (item) => {
+        item.checked = false;
+    });
+}
 
 const displayMovies = function (movieArray) {
     document.querySelector('#posters').innerHTML = movieArray.reduce((acc, item) => {
