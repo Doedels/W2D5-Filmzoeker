@@ -254,6 +254,12 @@ let movies = [
     }
 ]
 
+document.querySelectorAll('input').forEach( (item) => {
+    item.addEventListener('click', (event) => {
+        console.log(event.target.id);      
+    });
+});
+
 const displayMovies = function (movieArray) {
     document.querySelector('#posters').innerHTML = movieArray.reduce( (acc, item) => {
         return acc + `<a href="https://www.imdb.com/title/${item.imdbID}/" target="_blank"><img src="${item.Poster}" alt="film poster ${item.Title}"></a>`
