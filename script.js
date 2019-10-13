@@ -263,43 +263,48 @@ const getUnique = function (array, compare) {
         .filter(e => array[e]).map(e => array[e]);
     return unique;
 }
-// Aanroepen getUniue() met de array 'data', compare het 'Title' property in de objecten
-let movies = getUnique(data, 'Title');
 
-const filterMovies = function (radioButtonId) {
-    switch (radioButtonId) {
-        case 'Nieuwste': displayMovies(movies.filter(e => e.Year >= 2014));
+const filterMovies = function (movieArray, filter) {
+    switch (filter) {
+        case undefined:  return movieArray;
             break
-        default: displayMovies(movies.filter(e => e.Title.includes(radioButtonId)));
+        case 'Nieuwste': return movieArray.filter(e => e.Year >= 2014);
+            break
+        default: return movieArray.filter(e => e.Title.includes(filter));
     }
 }
 let radioButtons = document.querySelectorAll('input')
 
 radioButtons.forEach((item) => {
     item.addEventListener('click', (event) => {
-        filterMovies(event.target.id);
+        displayMovies(data, event.target.id);
     });
 });
 
 document.querySelector('button').onclick = (event) => {
-    displayMovies(movies);
+    displayMovies(data);
     radioButtons.forEach( (item) => {
         item.checked = false;
     });
 }
 
-const displayMovies = function (movieArray) {
-    document.querySelector('#posters').innerHTML = movieArray.reduce((acc, item) => {
+const getMovieString = function (movieArray) {
+    return movieArray.reduce((acc, item) => {
         return acc + `<a href="https://www.imdb.com/title/${item.imdbID}/" target="_blank"><img src="${item.Poster}" alt="film poster ${item.Title}"></a>`
     }, "");
 }
 
+const displayMovies = function (movieArray, filter) {
+    document.querySelector('#posters').innerHTML = 
+    getMovieString(filterMovies(getUnique(movieArray, 'Title'), filter))
+}
+
 document.addEventListener('DOMContentLoaded', function (event) {
-    displayMovies(movies);
+    displayMovies(data)
 })
 
 module.exports = {
-    displayMovies: displayMovies,
+    getMovieString: getMovieString,
     filterMovies: filterMovies,
     getUnique: getUnique
 }
