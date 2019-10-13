@@ -44,7 +44,7 @@ movies = [
     }
 ]
 
-let dubbel = movies.push({
+let dubbel = movies.concat({
     "Title": "Avangers",
     "Year": "2014",
     "imdbID": "Avangers"
