@@ -266,26 +266,28 @@ const getUnique = function (array, compare) {
 
 const filterMovies = function (movieArray, filter) {
     switch (filter) {
-        case undefined:  return movieArray;
+        case undefined: return movieArray;
             break
         case 'Nieuwste': return movieArray.filter(e => e.Year >= 2014);
             break
         default: return movieArray.filter(e => e.Title.includes(filter));
     }
 }
-let radioButtons = document.querySelectorAll('input')
+const setEventListeners = function () {
+    let radioButtons = document.querySelectorAll('input')
 
-radioButtons.forEach((item) => {
-    item.addEventListener('click', (event) => {
-        displayMovies(data, event.target.id);
+    radioButtons.forEach((item) => {
+        item.addEventListener('click', (event) => {
+            displayMovies(data, event.target.id);
+        });
     });
-});
 
-document.querySelector('button').onclick = (event) => {
-    displayMovies(data);
-    radioButtons.forEach( (item) => {
-        item.checked = false;
-    });
+    document.querySelector('button').onclick = (event) => {
+        displayMovies(data);
+        radioButtons.forEach((item) => {
+            item.checked = false;
+        });
+    }
 }
 
 const getMovieString = function (movieArray) {
@@ -295,12 +297,13 @@ const getMovieString = function (movieArray) {
 }
 
 const displayMovies = function (movieArray, filter) {
-    document.querySelector('#posters').innerHTML = 
-    getMovieString(filterMovies(getUnique(movieArray, 'Title'), filter))
+    document.querySelector('#posters').innerHTML =
+        getMovieString(filterMovies(getUnique(movieArray, 'Title'), filter));
 }
 
-document.addEventListener('DOMContentLoaded', function (event) {
-    displayMovies(data)
+document.addEventListener('DOMContentLoaded', () => {
+    setEventListeners();
+    displayMovies(data);
 })
 
 module.exports = {
